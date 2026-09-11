@@ -1,4 +1,4 @@
-Ki8#!/bin/bash
+bin/bash/!#
 set -e
 
 # Default UID/GID values (common default for first non-root user on Linux)
