@@ -56,4 +56,7 @@ gosu botuser alembic upgrade head
 echo "Migrations complete. Starting bot..."
 
 # exec gives PID 1 to the Python process — SIGTERM propagates correctly for graceful shutdown
+# Render health server
+gosu botuser python -c 'import os; from http.server import HTTPServer, BaseHTTPRequestHandler; port=int(os.environ.get("PORT","9090")); HTTPServer(("0.0.0.0",port),type("H",(BaseHTTPRequestHandler,),{"do_GET":lambda s:(s.send_response(200),s.end_headers(),s.wfile.write(b"OK")),"log_message":lambda *a:None})) .serve_forever()' &
+
 exec gosu botuser python run.py
