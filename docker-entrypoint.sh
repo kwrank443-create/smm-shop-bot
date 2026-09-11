@@ -57,6 +57,5 @@ echo "Migrations complete. Starting bot..."
 
 # exec gives PID 1 to the Python process — SIGTERM propagates correctly for graceful shutdown
 # Render health server
-gosugosu botuser python -m http.server "${PORT:-9090}" --bind 0.0.0.0 >/dev/null 2>&1 &
-
+gosu botuser python -m http.server "${PORT:-9090}" --bind 0.0.0.0 >/dev/null 2>&1 &
 exec gosu botuser python run.py
